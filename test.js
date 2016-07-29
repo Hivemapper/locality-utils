@@ -8,10 +8,21 @@ exports.stateNames = function(test) {
   test.done();
 }
 
+exports.typeCodes = function(test) {
+  test.expect(2);
+  test.equal('census-designated place', utils.typeCodeToString("57"));
+  test.equal('comunidad', utils.typeCodeToString("55"));
+  test.done();
+}
+
 exports.badArguments = function(test) {
-  test.expect(3);
+  test.expect(6);
   test.throws(function() {utils.stateCodeToString(25)}, 'State code must be a string');
   test.throws(function() {utils.stateCodeToString('2')}, 'State code must be two digits');
   test.throws(function() {utils.stateCodeToString('99')}, 'No matching state for state code 99');
+
+  test.throws(function() {utils.typeCodeToString(25)}, 'Type code must be a string');
+  test.throws(function() {utils.typeCodeToString('2')}, 'Type code must be two digits');
+  test.throws(function() {utils.typeCodeToString('B1')}, 'Type code not handled: B1');
   test.done();
 }

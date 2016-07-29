@@ -1,4 +1,5 @@
 import stateCodes from './stateCodes.js';
+import typeCodes from './typeCodes.js';
 
 export default {
   stateCodeToString(stateCode) {
@@ -16,5 +17,22 @@ export default {
     }
 
     return matchedString;
-  }
+  },
+
+  typeCodeToString(typeCode) {
+    if (typeof typeCode !== 'string') {
+      throw 'Type code must be a string';
+    }
+
+    if (typeCode.length !== 2) {
+      throw 'Type code must be two digits';
+    }
+
+    let matchedString = typeCodes[typeCode];
+    if (typeof matchedString === 'undefined') {
+      throw `Type code not handled: ${typeCode}`;
+    }
+
+    return matchedString;
+  },
 }
