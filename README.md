@@ -32,6 +32,16 @@ Returns a string formatted for human consumption, like `census-designated place`
 
 Throws an error if the typeCode argument is malformed, or if there was no matching type.
 
+##`fullNameForLocality(name, typeCode)`
+
+Transforms the name and type code as they come from the Census into what we want to call a locality in our database. The Census calls these `NAME` and `LSAD`. Example:
+```
+var county = {NAME: 'San Mateo', LSAD: '06'}
+var fullName = fullNameForLocality(county.NAME, county.LSAD); // Returns 'San Mateo County'
+```
+
+Throws an error if the typeCode argument is malformed, or if there was no matching type.
+
 #Developing
 The code in `/lib/` is compiled by Babel. The source code is written in ES6 and lives in `/src/`
 
