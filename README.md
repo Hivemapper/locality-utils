@@ -34,10 +34,10 @@ Throws an error if the typeCode argument is malformed, or if there was no matchi
 
 ##`fullNameForLocality(name, typeCode)`
 
-Transforms the name and type code as they come from the Census into what we want to call a locality in our database. The Census calls these `NAME` and `LSAD`. Example:
+Transforms the name and type code and class code as they come from the Census into what we want to call a locality in our database. The Census calls these `NAME` and `LSAD` and `CLASSFP`. Example:
 ```
-var county = {NAME: 'San Mateo', LSAD: '06'}
-var fullName = fullNameForLocality(county.NAME, county.LSAD); // Returns 'San Mateo County'
+var county = {NAME: 'San Mateo', LSAD: '06', CLASSFP: 'C1'}
+var fullName = fullNameForLocality(county.NAME, county.LSAD, county.CLASSFP); // Returns 'San Mateo County'
 ```
 
 Throws an error if the typeCode argument is malformed, or if there was no matching type.
