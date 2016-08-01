@@ -16,7 +16,7 @@ exports.typeCodes = function(test) {
 }
 
 exports.badArguments = function(test) {
-  test.expect(6);
+  test.expect(9);
   test.throws(function() {utils.stateCodeToString(25)}, 'State code must be a string');
   test.throws(function() {utils.stateCodeToString('2')}, 'State code must be two digits');
   test.throws(function() {utils.stateCodeToString('99')}, 'No matching state for state code 99');
@@ -24,5 +24,16 @@ exports.badArguments = function(test) {
   test.throws(function() {utils.typeCodeToString(25)}, 'Type code must be a string');
   test.throws(function() {utils.typeCodeToString('2')}, 'Type code must be two digits');
   test.throws(function() {utils.typeCodeToString('B1')}, 'Type code not handled: B1');
+
+  test.throws(function() {utils.fullNameForLocality('name', 25)}, 'Type code must be a string');
+  test.throws(function() {utils.fullNameForLocality('name', '2')}, 'Type code must be two digits');
+  test.throws(function() {utils.fullNameForLocality('name', 'B1')}, 'Type code not handled: B1');
+  test.done();
+}
+
+exports.fullName = function(test) {
+  test.expect(2);
+  test.equal('Pizza Gore', utils.fullNameForLocality("Pizza", "31"));
+  test.equal('San Francisco', utils.fullNameForLocality("San Francisco", "25"));
   test.done();
 }
